@@ -20,6 +20,7 @@ def blog(request):
 	return render(request, 'posts.html', {'posts':posts})
 
 def post_detail(request, pk):
+	#show the 7 most recent blog posts
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')[:7]
 	post_detail = get_object_or_404(Post, pk=pk)
 	post = get_object_or_404(Post, pk=pk)
