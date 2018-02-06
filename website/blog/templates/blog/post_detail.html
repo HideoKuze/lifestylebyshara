@@ -115,7 +115,7 @@
             <h5 class="card-header">Other Blog Posts</h5>
             <div class="card-body">
               {% for post in posts %}
-                  <h1><a style="color:grey;" href="{% url 'post_detail' pk=post.pk %}"> {{post.title}} </a></h1>
+                  <h1><a style="color:grey;" href="{% url 'post_detail' pk=post.pk %}"> {{post.title}}</a></h1>
               {% endfor %}
             </div>
           </div>
