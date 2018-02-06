@@ -4,6 +4,35 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+ /* styling for Shara's blog */
+
+
+#edit-prompt {
+  display: none;
+  z-index: 1;
+}
+
+
+.content-editor {
+  background-color: transparent;
+  opacity: 1;
+  border: none;
+  width:inherit;
+  height:inherit;
+}
+
+.content-editor:hover {
+  border: 1px solid #ccc;
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+ }
+
+
+/* end */
+
+
 @media print {
   *,
   *::before,
@@ -241,9 +270,9 @@ img {
   border-style: none;
 }
 
-svg:not(:root) {
+/*svg:not(:root) {
   overflow: hidden;
-}
+}*/
 
 a,
 area,
@@ -8188,3 +8217,4 @@ a.text-dark:focus, a.text-dark:hover {
   visibility: hidden !important;
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
