@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -88,11 +89,13 @@
           <!-- Post Content -->
           <!-- if the user is an admin allow the content will be clickable/editable -->
           {% if user.is_authenticated %}
+          <a class="btn btn-default" ><span class="glyphicon glyphicon-pencil" onclick="myFunction()"></span></a>
+          </br>
           <div style="text-align:left;" class="content-editor">
-          <p  style="height:inherit" class='body-font' onclick="myFunction()">{{ post_detail.text|linebreaksbr }}
+          <p  style="width:inherit" class='body-font' id="post-content">{{ post_detail.text|linebreaksbr }}
           <!-- the form should only appear on click for the authenticated user -->
           <form method="POST" id="edit-prompt">{% csrf_token %}
-          {{ form.text }}
+          {{ form.text|add_class:"custom-text-form" }}
           <button type="submit" class="save btn btn-default">Save</button>
           </form>
           </p>
@@ -142,10 +145,13 @@
     <script>
     function myFunction() {
     var x = document.getElementById("edit-prompt");
+    var y = document.getElementById("post-content")
     if (x.style.display === "none") {
         x.style.display = "block";
+        y.style.display = "none";
     } else {
         x.style.display = "none";
+        y.style.display ="block";
     }
     }
     </script>
