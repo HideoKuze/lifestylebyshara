@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
@@ -19,7 +20,7 @@
     <title>LifestyleByShara</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    
     <style>
     body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
     body, html {
@@ -38,11 +39,11 @@
       <i class="fa fa-bars"></i>
     </a>
     <a href="{% url 'landing' %}" class="w3-bar-item w3-button">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT</a>
-    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> TESTIMONIALS</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-    <a href="#services" class="w3-bar-item w3-button w3-hide-small">SERVICES</a>
-    <a href="{% url 'blog' %}"" class="w3-bar-item w3-button w3-hide-small"> BLOG</a>
+    <a href="{% url 'landing' %}#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT</a>
+    <a href="{% url 'landing' %}#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> TESTIMONIALS</a>
+    <a href="{% url 'landing' %}#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="{% url 'landing' %}#services" class="w3-bar-item w3-button w3-hide-small">SERVICES</a>
+    <a href="{% url 'blog' %}" class="w3-bar-item w3-button w3-hide-small"> BLOG</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
     </a>
   </div>
@@ -56,12 +57,12 @@
   <br />
 
     <!-- Page Content -->
-    <div class="container" >
+    <div class="container" style='margin-left: 10%;' >
 
       <div class="row" >
 
         <!-- Post Content Column -->
-        <div style="margin-left:-150px;" class="col-lg-8">
+        <div class="col-lg-6">
 
           <!-- Title -->
           <div class="post">
@@ -82,7 +83,12 @@
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <form action="{% url 'upload_image' pk=post_detail.pk %}" method="POST"> {% csrf_token %}
+          <!--<label for="file-upload" class="custom-file-upload"><a class="btn btn-default" ><span class="glyphicon glyphicon-pencil"></span></a></label>-->
+          <input  id='file-upload' target='file-upload' type='file' name='uploaded_image'/>
+          <img class="img-fluid rounded" src="{{post.img.url}}" alt="">
+          <input type="submit">
+          </form>
 
           <hr>
 
@@ -108,7 +114,7 @@
         </div>
 
         <!-- Sidebar Widgets Column -->
-        <div class="col-md-4" style="margin-left:100px;" >
+        <div class="col-md-4" style="margin-left:15%;" >
 
           <!-- Side Widget -->
           <div class="card my-4" style="margin-right:20px;">
@@ -139,9 +145,9 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'js/jquery.min.js' %} "></script>
-    <script src="{% static 'js/popper.js'"></script>
-    <script src="{% static 'js/bootstrap.min.js'"></script>
-    <script src="{% static 'js/custom-js.js"></script>
+    <script src="{% static 'js/popper.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/custom-js.js'%}"></script>
     <script>
     function myFunction() {
     var x = document.getElementById("edit-prompt");

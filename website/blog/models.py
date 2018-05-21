@@ -20,3 +20,10 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+def user_directory_path(instance, filename):
+    return 'user_images/user_{0}/{1}'.format(instance.user.id, filename)
+class ImageUpload(models.Model):
+	post_img = models.OneToOneField(Post, on_delete=models.CASCADE, blank=True)
+	img = models.ImageField(upload_to=user_directory_path)

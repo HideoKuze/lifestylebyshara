@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
-from .models import Post
+from .models import Post, ImageUpload
 
 class PostForm(forms.ModelForm):
 
@@ -14,3 +14,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'myfield': forms.TextInput(attrs={'class': 'myfieldclass'}),
         }
+
+class ImageForm(forms.ModelForm):
+	class meta:
+		model = ImageUpload

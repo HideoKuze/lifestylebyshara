@@ -16,9 +16,6 @@ body, html {
 </style>
 <br />
 <br />
-<div style='margin-left:0%;'>
-    <h1>Shara's Blog</h1>
-</div>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
@@ -44,9 +41,11 @@ body, html {
     
   </div>
 </div>
-
+<div class='container' style='margin-left:0%;'>
+    <h1>Shara's Blog</h1>
+</div>
 {% for post in posts %}
-<div class="container" style='margin-left:0%;>
+<div class="container" style='margin-left:0%'>
     <div class="row" >
         <div class="col-md-12 col-lg-12" '>
             <ul class="all-blogs" >
@@ -55,9 +54,9 @@ body, html {
                     <br />   
                     </a>
                     <div class="media-body">
-                        <p>published: {{ post.published_date }}</p>
                         <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                        <p>{{ post.text|linebreaksbr }}</p>   
+                        <p>{{ post.text|linebreaksbr }}</p>
+                        <p>published: {{ post.published_date }}</p>
                     </div>
                 </li>
             </ul>

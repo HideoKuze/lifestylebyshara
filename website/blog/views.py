@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
-from .models import Post
+from .models import Post, ImageUpload
 from django.utils import timezone
 from .forms import PostForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -35,6 +35,7 @@ def post_detail(request, pk):
 			post.published_date = timezone.now()
 			post.save()
 			return redirect('post_detail', pk=post.pk)
+
 	else:
 		form = PostForm(instance=post)
 	return render(request, 'post_detail.html', {'post_detail':post_detail, 'posts': posts, 'form':form })
@@ -71,3 +72,14 @@ def post_edit(request, pk):
 		form = PostForm(instance=post)
 
 	return render(request, 'blog/new_post.html', {'form': form})
+
+def upload_image(request, pk):
+	post = get_object_or_404(Post, pk=pk)
+	if request.method == 'POST':
+		post.img = request.FILES.get('uploaded_image')
+		post.save()
+		return redirect('post_detail', pk=post.pk)
+	else:
+		form = ImageUpload()
+
+	return render(request, 'blog/new_post.html', {'form':form, 'user': user, 'all_users':all_users})
